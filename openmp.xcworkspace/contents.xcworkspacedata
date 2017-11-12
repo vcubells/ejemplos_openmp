@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:omp_calculo_pi">
+   </FileRef>
+   <FileRef
+      location = "group:omp_factorial">
+   </FileRef>
+   <FileRef
+      location = "group:omp_saxpy">
+   </FileRef>
+   <FileRef
+      location = "group:omp_suma_matriz">
+   </FileRef>
+   <FileRef
+      location = "group:openmp">
+   </FileRef>
+</Workspace>
