@@ -19,14 +19,12 @@ int main(int argc, const char * argv[]) {
     
     int numeros[n];
     
-#pragma omp parallel for default(none) shared(n, numeros) private(i)
+    #pragma omp parallel for default(none) shared(n, numeros) private(i)
     for (i = 0; i < n; ++i) {
         numeros[i] = 1;
     }
     
-    
-    
-#pragma omp parallel for default(none) shared(n, numeros) private(i) reduction(+:suma)
+    #pragma omp parallel for default(none) shared(n, numeros) private(i) reduction(+:suma)
     for (i = 0; i < n; ++i) {
             suma += numeros[i];
     }

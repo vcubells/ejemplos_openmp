@@ -7,37 +7,51 @@
 //
 
 #include <stdio.h>
-#include <omp.h>
 #include <stdlib.h>
+#include <omp.h>
 #include <time.h>
 
 #define N 1000
 
-int main(int argc, const char * argv[]) {
-    
-    
-    int i;
+int main(int argc, const char * argv[]) 
+{
+    int i,j;
     int size = N * N;
     int A[size], B[size], S[size];
+
+    srand(time(NULL));
     
-    srand((int) time(NULL));
-    
-    /* Inicializar las matrices */
-#pragma omp parallel for private(i) shared(A, B, size)
+    // /* Inicializar las matrices */
+    #pragma omp parallel for private(i) shared(A, B, size)
     for (i = 0; i < size; ++i) {
             A[i] = rand() % 100;
             B[i] = rand() % 100;
     }
     
     /* Sumar las matrices */
-/* #pragma omp parallel for private(i, j) shared(A, B, S) collapse(2)
-    for (i = 0; i < N; ++i) {
-        for (j = 0; j < N; ++j) {
-            S[i][j] = A[i][j] + B[i][j];
+    #pragma omp parallel for private(i, j) shared(A, B, S) collapse(2)
+    for (i = 0; i < N; ++i) 
+    {
+        for (j = 0; j < N; ++j) 
+        {
+            int pos = i * N + j;
+            S[pos] = A[pos] + B[pos];
         }
     }
 
+    /* Imprimir la matriz */
+    for (i = 0; i < N; ++i) 
+    {
+        for (j = 0; j < N; ++j) 
+        {
+            int pos = i * N + j;
+            printf("[%d,%d] = %d\t", i, j , S[pos]);
+        }
+
+        printf("\n");
+    }
+
     
-   */
+
     return 0;
 }

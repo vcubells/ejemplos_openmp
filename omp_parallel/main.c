@@ -1,8 +1,8 @@
 //
 //  main.c
-//  omp_critical
+//  openmp_parallel
 //
-//  Created by Vicente Cubells Nonell on 03/11/14.
+//  Created by Vicente Cubells Nonell on 27/10/14.
 //  Copyright (c) 2014 Vicente Cubells Nonell. All rights reserved.
 //
 
@@ -32,26 +32,20 @@ int main(int argc, const char * argv[]) {
         
         int inicio = id * bloque;
         int fin = (id + 1) * bloque;
-        
-        if (id == nhilos - 1) { fin = n; }
-        
-        int suma_local = 0;
-        
-        for (i = inicio; i < fin; ++i) {
-            suma_local += numeros[i];
-        }
-        
-        // Región crítica
-        #pragma omp critical
-        {
-            suma += suma_local;
-        }
-
-        printf("La suma del hilo %d de %d = %d\n", id, nhilos, suma_local);
-    }
     
+        for (i = inicio; i < fin; ++i) {
+        // Región crítica
+            #pragma omp critical
+            {
+            suma += numeros[i];
+            }
+            
+        }
+        
+        printf("La suma del hilo %d de %d = %d\n", id, nhilos, suma);
+    }
+
     printf("La suma total es = %d\n", suma);
     
     return 0;
 }
-
