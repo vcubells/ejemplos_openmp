@@ -2,13 +2,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static long steps = 1000000000;
+ long steps = 1000000000;
 
 int main(int argc, const char *argv[])
 {
     int i;
     double x;
     double pi;
+
+    if (argc > 1)
+    {
+        steps = (long) argv[1];
+    }
 
     double step = 1.0 / (double)steps;
 
@@ -25,5 +30,5 @@ int main(int argc, const char *argv[])
     pi = step * sum;
     double delta = omp_get_wtime() - start;
 
-    printf("PI = %.16g calculado en %.4g segundos\n", pi, delta);
+    printf("PI = %.16g calculado en %.4g segundos con %ld puntos\n", pi, delta, steps);
 }
