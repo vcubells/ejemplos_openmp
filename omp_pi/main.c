@@ -2,17 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
- long steps = 1000000000;
+ 
 
 int main(int argc, const char *argv[])
 {
     int i;
     double x;
     double pi;
+    long steps = 1000000000;
 
     if (argc > 1)
     {
-        steps = (long) argv[1];
+        steps = atoi(argv[1]);
+    }
+    else {
+        printf("Use: %s [puntos]\n", argv[0]);
     }
 
     double step = 1.0 / (double)steps;
